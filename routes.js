@@ -119,10 +119,7 @@ router.post('/buy', basicAuth, (req, res) => {
     }).catch(err => res.status(400).json({ error: err.message }));
 });
 
-// Welcome message
-router.get('/msg', (req, res) => {
-    res.json({ message: 'Welcome to the API' });
-});
+
 
 // Delete User
 router.delete('/delete', basicAuth, (req, res) => {
@@ -137,6 +134,12 @@ router.get('/users', (req, res) => {
     User.getAll()
         .then(users => res.json(users))
         .catch(err => res.status(500).json({ error: err.message }));
+});
+
+
+// Welcome message
+router.get('/msg', (req, res) => {
+    res.json({ message: 'Welcome to the API' });
 });
 
 module.exports = router;

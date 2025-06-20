@@ -17,16 +17,3 @@ app.listen(PORT, () => {
 });
 
 
-// Basic dXNlcjE6cGFzc3dvcmQx        Basic dXNlcjE6cGFzc3dvcmQy
-
-// {
-//   "username": "user2",
-//   "password": "password2"
-// }
-
-// {
-//   "to": "user1",
-//   "amt": 13000
-// }
-
-// Basic dGFwYXM6dGtzMTIz

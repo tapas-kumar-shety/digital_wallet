@@ -3,11 +3,12 @@ const bodyParser = require('body-parser');
 const { User, Transaction, Product } = require('./models');
 const axios = require('axios');
 const bcrypt = require('bcryptjs');
+require('dotenv').config();
 
 const router = express.Router();
 router.use(bodyParser.json());
 
-// Basic Auth Middleware
+
 const basicAuth = (req, res, next) => {
     const authHeader = req.headers['authorization'];
     if (!authHeader) return res.sendStatus(401);
@@ -71,7 +72,7 @@ router.get('/bal', basicAuth, (req, res) => {
             return res.json({ balance, currency });
         }
 
-        axios.get(`https://api.currencyapi.com/v3/latest?apikey=YOUR_API_KEY&base=INR`)
+        axios.get(`https://api.currencyapi.com/v3/latest?apikey=${process.env.CURRENCY_API_KEY}&base=INR`)
             .then(response => {
                 const rate = response.data.data[currency].value;
                 const convertedBalance = balance * rate;
@@ -137,7 +138,7 @@ router.get('/users', (req, res) => {
 });
 
 
-// Welcome message
+
 router.get('/msg', (req, res) => {
     res.json({ message: 'Welcome to the API' });
 });
